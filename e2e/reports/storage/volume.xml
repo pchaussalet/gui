@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="4">
+
+  <testsuite name="volume"
+    errors="1" failures="0" hostname="" id="" package="storage" skipped="3"
+    tests="4" time="0.01000" timestamp="Fri, 14 Oct 2016 01:06:45 GMT">
+  
+    <testcase name="List entries" time="0.01000" assertions="0">
+    </testcase>
+      <system-err>
+          Error while running [Storage / Volume / List entries]:
+
+  ReferenceError: browser is not defined
+    at Object.login (/home/pchaussalet/freenas/sources/gui/e2e/pages/storage/volume.js:18:66)
+    at Object.List entries (/home/pchaussalet/freenas/sources/gui/e2e/tests/storage/volume.js:6:14)
+    at Module.call (/usr/lib/node_modules/nightwatch/lib/runner/module.js:62:34)
+    at /usr/lib/node_modules/nightwatch/lib/runner/testcase.js:70:29
+    at _fulfilled (/usr/lib/node_modules/nightwatch/node_modules/q/q.js:834:54)
+    at self.promiseDispatch.done (/usr/lib/node_modules/nightwatch/node_modules/q/q.js:863:30)
+    at Promise.promise.promiseDispatch (/usr/lib/node_modules/nightwatch/node_modules/q/q.js:796:13)
+    at /usr/lib/node_modules/nightwatch/node_modules/q/q.js:556:49
+    at runSingle (/usr/lib/node_modules/nightwatch/node_modules/q/q.js:137:13)
+    at flush (/usr/lib/node_modules/nightwatch/node_modules/q/q.js:125:13)
+      </system-err>
+  
+  
+    
+    <testcase
+      name="Show volume">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="Create SMB share">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="Finish">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>

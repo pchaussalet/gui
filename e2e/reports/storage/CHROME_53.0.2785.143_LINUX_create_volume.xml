@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="6">
+
+  <testsuite name="create_volume"
+    errors="0" failures="1" hostname="" id="" package="storage" skipped="2"
+    tests="6" time="62.38" timestamp="Sat, 15 Oct 2016 01:22:34 GMT">
+  
+    <testcase name="Enter section" time="11.88" assertions="5">
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Create volume" time="18.17" assertions="13">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Detach volume" time="11.01" assertions="5">
+
+    
+
+    
+
+    
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="Import volume" time="21.31" assertions="3">
+
+    
+
+      <failure message="Timed out while waiting for element &lt;div.CascadingListItem:nth-child(1) div.Viewer-list div.ListItem&gt; to be removed for 20000 milliseconds.">    at Object.Import volume (/home/pchaussalet/freenas/sources/gui/e2e/tests/storage/create_volume.js:92:14)</failure>
+
+    
+    </testcase>
+  
+  
+    
+    <testcase
+      name="Delete volume">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="Finish">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>
