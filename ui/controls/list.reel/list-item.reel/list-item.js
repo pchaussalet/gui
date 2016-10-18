@@ -17,7 +17,17 @@ exports.ListItem = Component.specialize({
             if (this._object !== object) {
                 this._object = object;
                 if (object) {
+                    this.isCollection = Array.isArray(object);
                     this._loadUserInterfaceDescriptor();
+                    var self = this;
+
+                    if (this._objectClassName) {
+                        this.classList.remove(this._objectClassName);
+                    }
+
+                    this._objectClassName = 'ListItem-' + (this.isCollection ? object._meta_data.collectionModelType.typeName :
+                        (object.id || 'new') + '-' + object.Type.typeName);
+                    this.classList.add(this._objectClassName);
                 }
             }
         }
@@ -38,7 +48,6 @@ exports.ListItem = Component.specialize({
     _loadUserInterfaceDescriptor: {
         value: function() {
             var self = this;
-            this.isCollection = Array.isArray(this.object);
 
             var hasType = this.object.Type || this.isCollection && this.object._meta_data;
             if (!hasType && this.objectType) {
