@@ -252,13 +252,6 @@ var FreeNASService = exports.FreeNASService = RawDataService.specialize({
     },
 
 
-    /**
-     * @function
-     * @public
-     *
-     * @description todo
-     *
-     */
     deleteRawData: {
         value: function (rawData, object) {
             var type = object.constructor.Type,
@@ -266,13 +259,18 @@ var FreeNASService = exports.FreeNASService = RawDataService.specialize({
 
             if (deleteServiceDescriptor) {
                 var self = this,
+                    rpcArgsi = [object.persistedId],
                     taskName = deleteServiceDescriptor.task;
+
+                if (arguments.length > 2) {
+                    rpcArgs = rpcArgs.concat(Array.prototype.slice.call(arguments, 2, arguments.length));
+                }
 
                 return this.backendBridge.send(
                     deleteServiceDescriptor.namespace,
                     deleteServiceDescriptor.name, {
                         method: deleteServiceDescriptor.method,
-                        args: [taskName, [object.persistedId]]
+                        args: [taskName, rpcArgs]
                     }
                 ).then(function (response) {
                     self._snapshotService.removeSnapshotForTypeNameAndId(type.typeName, object.id);
@@ -294,14 +292,15 @@ var FreeNASService = exports.FreeNASService = RawDataService.specialize({
         }
     },
 
+    deleteDataObject: {
+        value: function(object) {
+            var record = {};
+            this.mapToRawData(object, record);
+            Array.prototype.unshift.call(arguments, record);
+            return this.deleteRawData.apply(this, arguments);
+        }
+    },
 
-    /**
-     * @function
-     * @public
-     *
-     * @description todo
-     *
-     */
     saveRawData: {
         value: function (rawData, object) {
             var type = object.constructor.Type,
