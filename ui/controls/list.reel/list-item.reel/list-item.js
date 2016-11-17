@@ -25,8 +25,9 @@ exports.ListItem = Component.specialize({
                         this.classList.remove(this._objectClassName);
                     }
 
-                    this._objectClassName = 'ListItem-' + (this.isCollection ? object._meta_data.collectionModelType.typeName :
-                        (object.id || 'new') + '-' + object.Type.typeName);
+                    this._objectClassName = this.isCollection ?
+                            object._meta_data.collectionModelType.typeName + 'List' :
+                            object.Type.typeName + '-' + (object.id || 'new');
                     this.classList.add(this._objectClassName);
                 }
             }
