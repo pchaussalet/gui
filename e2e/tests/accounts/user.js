@@ -1,3 +1,4 @@
+var CSS = 'css selector';
 module.exports = {
     'Login': function(browser) {
         var section = browser.page.accounts();
@@ -21,7 +22,7 @@ module.exports = {
             .waitForElementVisible('@userCategory', 10000)
             .press('@userCategory')
             .waitForElementVisible('@usersViewer', 10000)
-            .api.elements('css selector', 'div.CascadingListItem:nth-child(2) div.List-item', function(response) {
+            .api.elements(CSS, 'div.CascadingListItem:nth-child(2) div.List-item', function(response) {
                 this.assert.equal(response.value.length, 0);
             });
     },
@@ -35,11 +36,16 @@ module.exports = {
             .press('@userCreateButton')
             .waitForElementVisible('@userInspector', 10000)
         ;
-        
+
+        section.expect.element('@userSave').to.not.be.enabled;
+
+        section
+            .setValue('@username', 'Foo')
+        ;
     },
 
     'Finish': function(browser) {
-        //browser.end();
+//        browser.end();
     }
 }
 

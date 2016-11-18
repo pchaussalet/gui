@@ -25,9 +25,7 @@ exports.ListItem = Component.specialize({
                         this.classList.remove(this._objectClassName);
                     }
 
-                    this._objectClassName = this.isCollection ?
-                            object._meta_data.collectionModelType.typeName + 'List' :
-                            object.Type.typeName + '-' + (object.id || 'new');
+                    this._objectClassName = this._getTypeName(object);
                     this.classList.add(this._objectClassName);
                 }
             }
@@ -42,6 +40,15 @@ exports.ListItem = Component.specialize({
                 this._loadUserInterfaceDescriptor().then(function() {
                     self._canDrawGate.setField(self.constructor.CAN_DRAW_FIELD, true);
                 });   
+            }
+        }
+    },
+
+    _getTypeName: {
+        value: function(object) {
+            if (object) {
+                return (Array.isArray(object) && object._meta_data && object._meta_data.collectionModelType && object._meta_data.collectionModelType.typeName + 'List') ||
+                        (object.Type && object.Type.typeName + '-' + (object.id || 'new'));
             }
         }
     },

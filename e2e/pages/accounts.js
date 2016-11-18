@@ -9,7 +9,9 @@ module.exports = {
         usersViewer: 'div.CascadingListItem:nth-child(2) div.Viewer',
         usersEntries: 'div.CascadingListItem:nth-child(2) div.List-item',
         userCreateButton: 'div.CascadingListItem:nth-child(2) div.Viewer-createButton',
-        userInspector: 'div.CascadingListItem:nth-child(3) div.User'
+        userInspector: 'div.CascadingListItem:nth-child(3) div.User',
+        userSave: 'div.CascadingListItem:nth-child(3) div.User button.Inspector-save',
+        username: 'div.CascadingListItem:nth-child(3) div.User div[data-montage-id=usernameEdit] input'
     },
     commands: [
         {
