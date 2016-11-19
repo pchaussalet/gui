@@ -9,7 +9,8 @@ var path                    = require('path');
     postcssDiscardComments  = require('postcss-discard-comments'),
     browserSync             = require('browser-sync').create(),
     cssnano                 = require('cssnano'),
-    ts                      = require('gulp-typescript');
+    ts                      = require('gulp-typescript'),
+    nightwatch              = require("gulp-nightwatch");
 
 var tsProject = ts.createProject('tsconfig.json');
 
@@ -62,9 +63,16 @@ gulp.task('allCss', function() {
 });
 
 gulp.task('typescript', function(){
-  gulp.src(['**/*.ts', '!**/node_modules/**'])
-    .pipe(tsProject())
-    .pipe(gulp.dest('.'))
+    gulp.src(['**/*.ts', '!**/node_modules/**'])
+        .pipe(tsProject())
+        .pipe(gulp.dest('.'))
+});
+
+gulp.task('test:e2e', function() {
+    gulp.src('')
+        .pipe(nightwatch({
+            cliArgs: process.argv.slice(3)
+        }));
 });
 
 // Default task to be run with `gulp`

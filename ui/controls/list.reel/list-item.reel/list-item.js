@@ -25,7 +25,7 @@ exports.ListItem = Component.specialize({
                         this.classList.remove(this._objectClassName);
                     }
 
-                    this._objectClassName = this._getTypeName(object);
+                    this._objectClassName = this._getTypeClass(object);
                     this.classList.add(this._objectClassName);
                 }
             }
@@ -44,11 +44,11 @@ exports.ListItem = Component.specialize({
         }
     },
 
-    _getTypeName: {
+    _getTypeClass: {
         value: function(object) {
             if (object) {
                 return (Array.isArray(object) && object._meta_data && object._meta_data.collectionModelType && object._meta_data.collectionModelType.typeName + 'List') ||
-                        (object.Type && object.Type.typeName + '-' + (object.id || 'new'));
+                        (object.Type && object.Type.typeName);
             }
         }
     },
