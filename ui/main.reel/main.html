@@ -109,6 +109,9 @@
             "prototype": "ui/disconnection-modal.reel",
             "properties": {
                 "element": {"#": "disconnectionModal"}
+            },
+            "bindings": {
+                "connectionStatus": {"<-": "@owner.connectionStatus"}
             }
         },
         "icons": {
@@ -139,6 +142,21 @@
             },
             "bindings": {
                 "switchValue": {"<-": "@owner.sectionGeneration"}
+            }
+        },
+        "signInModal": {
+            "prototype": "ui/controls/modal.reel",
+            "properties": {
+                "element": {"#": "signInModal"}
+            },
+            "bindings": {
+                "classList.has('montage-Overlay--visible')": {"<-": "!@signIn.isLoggedIn"}
+            }
+        },
+        "signIn": {
+            "prototype": "ui/sign-in.reel",
+            "properties": {
+                "element": {"#": "signIn"}
             }
         }
     }
@@ -175,6 +193,9 @@
             </div>
                 <div data-montage-id="drawer"></div>
         </main>
+        <div data-montage-id="signInModal" class="SignInModal">
+            <div data-montage-id="signIn"></div>
+        </div>
         <div data-montage-id="modal" class="Main-modal"></div>
         <div data-montage-id="disconnectionModal"></div>
     </div>
