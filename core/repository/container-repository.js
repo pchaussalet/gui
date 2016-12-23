@@ -9,7 +9,8 @@ var AbstractRepository = require("core/repository/abstract-repository").Abstract
     DockerImagePullDao = require("core/dao/docker-image-pull-dao").DockerImagePullDao,
     DockerContainerDao = require("core/dao/docker-container-dao").DockerContainerDao,
     DockerContainerBridgeDao = require("core/dao/docker-container-bridge-dao").DockerContainerBridgeDao,
-    ModelDescriptorService = require("core/service/model-descriptor-service").ModelDescriptorService;
+    ModelDescriptorService = require("core/service/model-descriptor-service").ModelDescriptorService,
+    _ = require("lodash");
 
 exports.ContainerRepository = AbstractRepository.specialize({
 
@@ -150,19 +151,13 @@ exports.ContainerRepository = AbstractRepository.specialize({
 
             return Promise.all([
                 self.getNewEmptyDockerContainerSectionList(),
-                //Add sub container sections here
-
                 self.listDockerContainers(),
                 self.listDockerHosts(),
                 self.listDockerImages(),
                 self.listDockerCollections()
-            ]).then(function (data) {
-                var containerSections = data[0];
-
-                for (var i = 1, length = data.length; i < length; i++) {
-                    containerSections.push(data[i]);
-                }
-
+            ]).spread(function(sections, containers, hosts, images, collections) {
+                var containerSections = _.concat(sections, [hosts, images, collections, containers]);
+                containerSections._objectType = 'ContainerSection';
                 return containerSections;
             });
         }
