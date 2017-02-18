@@ -1,4 +1,4 @@
-import {AbstractModelRepository} from './abstract-model-repository';
+import {AbstractModelRepository} from './AbstractModelRepository';
 import {DockerContainerDao} from '../dao/docker-container-dao';
 
 export class DockerContainerRepository extends AbstractModelRepository {

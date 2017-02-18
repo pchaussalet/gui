@@ -79,9 +79,10 @@ export class AbstractDao<T extends AbstractDataObject> {
     public findSingleEntry(criteria: any, params?: any): Promise<T> {
         params = params || {};
         params.single = true;
-        return this.query(criteria, params).then(function(results) {
-            return _.assign(results[0], {_stableId: results[0].id});
-        });
+        return this.query(criteria, params).then(results => _.isObject(results[0]) ?
+            _.assign(results[0], {_stableId: results[0].id}) :
+            results[0]
+        );
     }
 
     public find(criteria?: any, params?: any): Promise<any> {
@@ -203,9 +204,11 @@ export class AbstractDao<T extends AbstractDataObject> {
             (entries) => {
                 entries = Array.isArray(entries) ? entries : [entries];
                 self.register();
-                let results: any = entries.map((x: any) => {
-                    x._objectType = self.objectType;
-                    return x;
+                let results: any = entries.map((entry: any) => {
+                    if (_.isObject(entry)) {
+                        entry._objectType = self.objectType;
+                    }
+                    return entry;
                 });
                 results._objectType = self.objectType;
                 return results;

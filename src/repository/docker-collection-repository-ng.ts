@@ -1,4 +1,4 @@
-import {AbstractModelRepository} from './abstract-model-repository';
+import {AbstractModelRepository} from './AbstractModelRepository';
 import {DockerCollectionDao} from '../dao/docker-collection-dao';
 import * as _ from 'lodash';
 

@@ -10,6 +10,7 @@ import {ModelEventName} from '../model-event-name';
 import {Model} from '../model';
 import {DatastoreService} from '../service/datastore-service';
 import * as _ from 'lodash';
+import {User} from '../model/User';
 
 export class AccountRepository extends AbstractRepository {
     private static instance: AccountRepository;
@@ -197,12 +198,14 @@ export class AccountRepository extends AbstractRepository {
 
     protected handleStateChange(name: string, state: any) {
         switch (name) {
+/*
             case Model.User:
                 this.users = this.dispatchModelEvents(this.users, ModelEventName.User, state);
                 break;
             case Model.Group:
                 this.groups = this.dispatchModelEvents(this.groups, ModelEventName.Group, state);
                 break;
+*/
             case Model.Directory:
                 this.directories = this.dispatchModelEvents(this.directories, ModelEventName.Directory, state);
                 break;
@@ -212,6 +215,10 @@ export class AccountRepository extends AbstractRepository {
     }
 
     protected handleEvent(name: string, data: any) {
+    }
+
+    findUser(criteria: {id: string}): Promise<User> {
+        return this.userDao.findSingleEntry(criteria);
     }
 }
 

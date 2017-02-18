@@ -66,6 +66,16 @@ export abstract class AbstractRoute {
         });
     }
 
+    protected loadStreamInColumn(stack: any, columnIndex: number, previousColumnIndex: number, pathSuffix: any, objectType: any, streamPromise: Promise<Array<any>>, options?: any): Promise<Array<any>> {
+        return Promise.all([
+            this.loadListInColumn(stack, columnIndex, previousColumnIndex, pathSuffix, objectType, streamPromise, options),
+            streamPromise
+        ]).spread((stack, data) => {
+            (_.last(stack) as any).object._stream = data._stream;
+            return stack;
+        });
+    }
+
     protected loadListInColumn(stack: any, columnIndex: number, previousColumnIndex: number, pathSuffix: any, objectType: any, dataPromise: Promise<Array<any>>, options?: any): Promise<Array<any>> {
         options = options || {};
         let parentContext = stack[previousColumnIndex],

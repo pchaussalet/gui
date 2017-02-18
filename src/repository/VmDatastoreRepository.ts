@@ -1,5 +1,5 @@
 import * as uuid from 'uuid';
-import {AbstractModelRepository} from './abstract-model-repository';
+import {AbstractModelRepository} from './AbstractModelRepository';
 import {VmDatastoreDao} from '../dao/vm-datastore-dao';
 import {VmDatastore} from '../model/VmDatastore';
 

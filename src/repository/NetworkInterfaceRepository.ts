@@ -1,4 +1,4 @@
-import {AbstractModelRepository} from './abstract-model-repository';
+import {AbstractModelRepository} from './AbstractModelRepository';
 import {NetworkInterface} from '../model/NetworkInterface';
 import {NetworkInterfaceDao} from '../dao/network-interface-dao';
 
